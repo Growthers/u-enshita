@@ -6,7 +6,7 @@ type GetSpeakerResponseJSON struct {
 	Social []struct {
 		ServiceName string `json:"serviceName"`
 		AccountName string `json:"accountName"`
-	}
+	} `json:"social"`
 	Duration  uint64 `json:"duration"`
 	BreakTime bool   `json:"breakTime"`
 	Order     uint64 `json:"order"`
@@ -19,7 +19,7 @@ type UpdateSpeakerRequestJSON struct {
 	Social []struct {
 		ServiceName string `json:"serviceName"`
 		AccountName string `json:"accountName"`
-	}
+	} `json:"social"`
 	Duration  uint64 `json:"duration"`
 	BreakTime bool   `json:"breakTime"`
 	Order     uint64 `json:"order"`
@@ -32,7 +32,7 @@ type UpdateSpeakerResponseJSON struct {
 	Social []struct {
 		ServiceName string `json:"serviceName"`
 		AccountName string `json:"accountName"`
-	}
+	} `json:"social"`
 	Duration  uint64 `json:"duration"`
 	BreakTime bool   `json:"breakTime"`
 	Order     uint64 `json:"order"`
@@ -45,7 +45,7 @@ type ChangeSpeakerWebSocketJSON struct {
 	Social []struct {
 		ServiceName string `json:"serviceName"`
 		AccountName string `json:"accountName"`
-	}
+	} `json:"social"`
 	Duration  uint64 `json:"duration"`
 	BreakTime bool   `json:"breakTime"`
 }
