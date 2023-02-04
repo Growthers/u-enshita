@@ -1,10 +1,11 @@
 package json
 
 import (
-	"github.com/growthers/mu-enshita/pkg/lib/inmemory"
-	"github.com/growthers/mu-enshita/pkg/types/domain"
 	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/growthers/mu-enshita/pkg/lib/inmemory"
+	"github.com/growthers/mu-enshita/pkg/types/domain"
 )
 
 func TestFindAllSpeakers(t *testing.T) {
