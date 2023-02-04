@@ -1,6 +1,7 @@
 package api
 
 type GetSpeakerResponseJSON struct {
+	ID     string `json:"id"`
 	Name   string `json:"name"`
 	Title  string `json:"title"`
 	Social []struct {
@@ -27,6 +28,7 @@ type UpdateSpeakerRequestJSON struct {
 }
 
 type UpdateSpeakerResponseJSON struct {
+	ID     string `json:"id"`
 	Name   string `json:"name"`
 	Title  string `json:"title"`
 	Social []struct {
@@ -40,6 +42,7 @@ type UpdateSpeakerResponseJSON struct {
 }
 
 type ChangeSpeakerWebSocketJSON struct {
+	ID     string `json:"id"`
 	Name   string `json:"name"`
 	Title  string `json:"title"`
 	Social []struct {

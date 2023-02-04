@@ -1,6 +1,7 @@
 package domain
 
 type Speaker struct {
+	ID     string
 	Name   string
 	Title  string
 	Social []struct {
