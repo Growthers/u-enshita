@@ -67,6 +67,7 @@ func (r *SpeakerJSONRepository) UpdateSpeaker(id string, speaker domain.Speaker)
 	for i, v := range r.cache.Speakers {
 		if v.ID == id {
 			d[i] = data.SpeakerStoreJSON(speaker)
+			break
 		}
 	}
 
