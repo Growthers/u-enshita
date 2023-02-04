@@ -8,7 +8,7 @@ type DummyFile struct {
 }
 
 func (d *DummyFile) Read(p []byte) (n int, err error) {
-	for i, _ := range p {
+	for i := range p {
 		// データ末尾に来たら脱出
 		if i+d.readByte == len(d.dataArray) {
 			return d.readByte + i, io.EOF
