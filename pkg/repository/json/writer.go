@@ -2,9 +2,10 @@ package json
 
 import (
 	"encoding/json"
-	"github.com/growthers/mu-enshita/pkg/types/data"
 	"io"
 	"os"
+
+	"github.com/growthers/mu-enshita/pkg/types/data"
 )
 
 // JSON Writer

@@ -3,6 +3,7 @@ package json
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/growthers/mu-enshita/pkg/types/data"
 	"github.com/growthers/mu-enshita/pkg/types/domain"
 )
