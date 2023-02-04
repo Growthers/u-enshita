@@ -19,7 +19,7 @@ func (d *DummyFile) Read(p []byte) (n int, err error) {
 }
 
 func (d *DummyFile) Write(p []byte) (n int, err error) {
-	for i, _ := range p {
+	for i := range p {
 		d.dataArray = append(d.dataArray, p[i])
 	}
 	return len(p), nil

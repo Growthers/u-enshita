@@ -1,9 +1,10 @@
 package json
 
 import (
+	"time"
+
 	"github.com/growthers/mu-enshita/pkg/types/data"
 	"github.com/growthers/mu-enshita/pkg/types/domain"
-	"time"
 )
 
 type EventJSONRepository struct {
