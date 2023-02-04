@@ -1,15 +1,13 @@
 package data
 
-import "time"
-
 type StoreJSON struct {
 	Event    EventStoreJSON     `json:"event"`
 	Speakers []SpeakerStoreJSON `json:"speakers"`
 }
 
 type EventStoreJSON struct {
-	StartAt time.Time `json:"startAt"`
-	EndAt   time.Time `json:"endAt"`
+	StartAt string `json:"startAt"`
+	EndAt   string `json:"endAt"`
 }
 
 type SpeakerStoreJSON struct {

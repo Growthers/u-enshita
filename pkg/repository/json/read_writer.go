@@ -36,7 +36,6 @@ func (w DataReadWriter) write(d []byte) error {
 // read 対象を読み込んでマッピングして返す
 func (w DataReadWriter) read() (data.StoreJSON, error) {
 	defer w.f.Seek(0, 0)
-
 	// 対象をすべて読み込み
 	d, err := io.ReadAll(w.f)
 	if err != nil {

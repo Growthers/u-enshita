@@ -3,6 +3,7 @@ package json
 import (
 	"github.com/growthers/mu-enshita/pkg/types/data"
 	"github.com/growthers/mu-enshita/pkg/types/domain"
+	"time"
 )
 
 type EventJSONRepository struct {
@@ -19,5 +20,9 @@ func NewEventJSONRepository(readWriter DataReadWriter) *EventJSONRepository {
 }
 
 func (e EventJSONRepository) GetEvent() (domain.Event, error) {
-	return domain.Event(e.cache.Event), nil
+	d := domain.Event{}
+	ev := e.cache.Event
+	d.StartAt, _ = time.Parse(time.RFC3339, ev.StartAt)
+	d.EndAt, _ = time.Parse(time.RFC3339, ev.EndAt)
+	return d, nil
 }
