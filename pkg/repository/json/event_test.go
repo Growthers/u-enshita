@@ -1,9 +1,10 @@
 package json
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 
 	"github.com/growthers/mu-enshita/pkg/lib/inmemory"
 	"github.com/growthers/mu-enshita/pkg/types/domain"
