@@ -34,11 +34,9 @@ func (w DataReadWriter) write(d []byte) error {
 	}
 
 	return nil
-
 }
 
 func (w DataReadWriter) read() (data.StoreJSON, error) {
-
 	d, err := io.ReadAll(w.f)
 	if err != nil {
 		return data.StoreJSON{}, err
