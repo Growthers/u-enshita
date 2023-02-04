@@ -17,7 +17,6 @@ func NewDataReadWriter(f *os.File) *DataReadWriter {
 }
 
 func (w DataReadWriter) write(d []byte) error {
-
 	_, err := w.f.Seek(0, 0)
 	if err != nil {
 		return err
