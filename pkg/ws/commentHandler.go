@@ -1,21 +1,68 @@
 package ws
 
-import "nhooyr.io/websocket"
+import (
+	"context"
+	"github.com/growthers/mu-enshita/pkg/types/api"
+	"github.com/labstack/echo/v4"
+	"log"
+	"nhooyr.io/websocket"
+	"nhooyr.io/websocket/wsjson"
+)
 
-type CommentHandler struct {
-	conn []*websocket.Conn
-}
+func CommentHandler(c echo.Context) {
+	conn, err := websocket.Accept(c.Response(), c.Request(), nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	ch := make(chan api.CreateCommentWebSocketJSON, 8)
+	defer conn.Close(websocket.StatusInternalError, "")
+	CommentBroadCast.AppendChan(ch)
 
-func (c *CommentHandler) SendComment() error {
-	return nil
-}
+	ctx, cancel := context.WithCancel(context.Background())
+	//受信処理
+	go func() {
+		var comment api.CreateCommentRequestJSON
+		for {
+			err := wsjson.Read(ctx, conn, comment)
+			//TODO 切断処理をちゃんとかく
+			if err != nil {
+				CommentBroadCast.CloseChan(ch)
+				conn.Close(websocket.StatusInternalError, "")
+				//チャンネルを削除
+				cancel()
+				break
+			}
 
-func (c *CommentHandler) AppendWS(ws *websocket.Conn) {
+			commentData := api.CreateCommentWebSocketJSON{
+				From:        comment.From,
+				DataSource:  comment.DataSource,
+				CommentText: comment.CommentText,
+			}
 
-	c.conn = append(c.conn, ws)
-}
+			CommentBroadCast.SendComment(commentData)
+		}
+	}()
+	//送信処理
+	go func() {
+		for {
+			select {
+			case comment := <-ch:
+				err := wsjson.Write(ctx, conn, comment)
+				if err != nil {
+					conn.Close(websocket.StatusInternalError, "")
+					CommentBroadCast.CloseChan(ch)
+					cancel()
+					break
+				}
+			}
+		}
 
-func (c *CommentHandler) CloseWS(i int) {
-	c.conn[i] = c.conn[len(c.conn)-1]
-	c.conn = c.conn[:len(c.conn)-1]
+	}()
+	for {
+		select {
+		case <-ctx.Done():
+			break
+
+		}
+	}
 }
