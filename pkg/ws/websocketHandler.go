@@ -25,10 +25,10 @@ func WebSocketHandler(c echo.Context) {
 }
 
 func WebsocketReceive(ctx context.Context, c *websocket.Conn) error {
-	
+
 	return nil
 }
 
-func CommentSend() error {
+func WebsocketSend() error {
 	return nil
 }
